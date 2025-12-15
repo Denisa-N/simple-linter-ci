@@ -1,6 +1,8 @@
 import subprocess
 
 def run_command(cmd):
-		subprocess.run(cmd, shell=True)  # This is a vulnerability
+    subprocess.run(cmd, shell=True)  # Vulnerable to shell injection
 
-run_command("ls -l")  # Example call
+user_cmd = input("Enter a command: ")
+run_command(user_cmd)
+
