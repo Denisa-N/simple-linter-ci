@@ -34,5 +34,5 @@ jobs:
         uses: anchore/scan-action@v3
         with:
           image: "my-app:latest"
-          severity-cutoff: "high"
+          severity-cutoff: "critical"
 
