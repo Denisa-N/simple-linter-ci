@@ -31,7 +31,7 @@ jobs:
         run: docker build . --tag my-app:latest
 
       - name: Scan image with Grype
-        uses: anchore/scab-action@v3
+        uses: anchore/scan-action@v3
         with:
           image: "my-app:latest"
           fail-on-severity: "high"
