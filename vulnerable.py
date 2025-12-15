@@ -1,8 +1,7 @@
-import subprocess
+import subprocess, os
 
-def run_command(cmd):
-    subprocess.run(cmd, shell=True)  # Vulnerable to shell injection
+def run_command():
+    cmd = os.environ.get("VULN_CMD")  # user-controlled
+    subprocess.run(cmd, shell=True)
 
-user_cmd = input("Enter a command: ")
-run_command(user_cmd)
-
+run_command()
