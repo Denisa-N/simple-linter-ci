@@ -1,0 +1,38 @@
+name: DevSecOps Pipeline
+
+on: [push]
+
+jobs:
+  sast-scan:
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: python
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+
+  sca-scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build . --tag my-app:latest
+
+      - name: Scan image with Grype
+        uses: anchore/grype-action@v3
+        with:
+          image: "my-app:latest"
+          fail-on-severity: "high"
+
