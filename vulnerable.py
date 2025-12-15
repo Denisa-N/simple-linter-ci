@@ -1,6 +1,6 @@
 import subprocess
-import os
 
-def run_command():
-	cmd = os.environ.get("VULN_CMD")  # User-controlled input
-	subprocess.run(cmd, shell=True)  # This is a vulnerability
+def run_command(cmd):
+		subprocess.run(cmd, shell=True)  # This is a vulnerability
+
+run_command("ls -l")  # Example call
